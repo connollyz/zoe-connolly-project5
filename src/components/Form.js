@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-function Form() {
+
+
+const Form = (props) => {
     return (
-        <form action="submit">
-            <label for="">{}</label>
-            <input type="radio" className="" id="" name="" required/>
-            <button onClick>next</button>
-        </form>
-    );//return
-} 
-
+        <div>
+            <label className="flavor" for="flavor">
+                {props.flavor}
+                <input className="radio" type="radio" id="flavor" name="flavor" required /> 
+            </label> 
+            <label className="icing" htmlFor="icing">
+                {props.icing}
+                <input className="radio" type="radio" id="icing" name="icing" required />
+            </label>
+        </div>
+    )
+}
 //exports form component to App.js
 export default Form; 
