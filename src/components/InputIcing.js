@@ -2,11 +2,10 @@ import React, {Component} from 'react';
     
 const FormIcing = (props) => {
     return (
-        <form onSubmit={this.props.handleIcing()}>
+       <React.Fragment>
             <label className="icing" htmlFor="icing">{props.icing}</label>
             <input className="radio" type="radio" id="icing" name="icing" required/>
-            <input type="submit" value="submit"/>
-        </form>
+        </React.Fragment>
     )
 }
 //exports form component to App.js

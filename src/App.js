@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import firebase from './firebase.js';
 import Header from './components/Header.js';
 import Donut from './components/Donut.js';
-import FormFlavor from './components/FormFlavor.js';
-import FormIcing from './components/FormIcing.js';
+import InputFlavor from './components/InputFlavor.js';
+import InputIcing from './components/InputIcing.js';
+import InputSprinkles from './components/InputSprinkles.js';
 import Footer from './components/Footer.js';
 import './App.css';
 
@@ -15,8 +16,8 @@ class App extends Component{
     this.state={
       //Have a state with an emty array (option array)
       flavors:[],
-      icing:[]
-     
+      icing:[],
+      sprinkles: []
     }
   }
   
@@ -47,7 +48,7 @@ class App extends Component{
           hex: data.flavors[flavor]
         })
       }
-      console.log(flavors)
+      console.log("flavors",flavors)
 
 
       // //dountIcing
@@ -63,27 +64,49 @@ class App extends Component{
           hex: data.icing[icing]
         })
       }
-      console.log(icings)
+      console.log("icing",icings)
+
+
+      // dountsprinkles
+      //emty array to store the sprinkles in
+      const sprinkles = [];
+      // console.log("sprinkles",sprinkles)
+
+      //get the data.sprinkles from data 
+      for (let sprinkle in data.sprinkles) {
+        //and store them in a array
+        sprinkles.push({
+          sprinkle: sprinkle,
+          hex: data.sprinkles[sprinkle]
+        })
+      }
+      console.log("sprinkels", sprinkles)
 
 
       //set state for both flavors, icing, and sprinkles
       this.setState({
         flavors: flavors,
-        icing: icings
-        
+        icing: icings,
+        sprinkles: sprinkles    
       })
     })
   }
 
 
-  handleSubmitFlavor = () => {
-
+  //Flavor handle submit
+  handleSubmitFlavor = (event) => {
+    event.preventDefault();
   }
 
-  handleSubmitIcing = () => {
-
+   //Icing handle submit
+  handleSubmitIcing = (event) => {
+    event.preventDefault();
   }
 
+  //Sprinkles handle submit
+  handleSubmitSprinkles= (event) => {
+    event.preventDefault();
+  }
   
   
   //this is where things get print to page
@@ -92,20 +115,40 @@ class App extends Component{
       <div className="App">
         <Header/>
         <main>
-          <Donut/>
-          <div>
+          <Donut/> 
+          {/* flavor form */}
+          <form onSubmit={this.handleFlavor}>
             {this.state.flavors.map(flavor => {
               return (
-                <FormFlavor flavor={flavor.flavor} handleFlavor={this.handleSubmitFlavor} />
+                <InputFlavor flavor={flavor.flavor} handleFlavor={this.handleSubmitFlavor} />
               )
             })}
+            <input type="submit" value="submit"/>   
+          </form>
 
+          
+          {/* icing form */}
+          <form onSubmit={this.handleIcing}>
             {this.state.icing.map(icing => {
               return (
-                <FormIcing icing={icing.newIcing} handleIcing={this.handleSubmitIcing}/>
+                <InputIcing icing={icing.newIcing} handleIcing={this.handleSubmitIcing}/>
               )
-            })}
-          </div>
+            })} 
+            <input type="submit" value="submit" />
+          </form>  
+
+            {/* sprinkles form */}
+            <form onSubmit={this.handleSubmitSprinkles}>
+              {this.state.sprinkles.map(sprinkle => {
+                return (
+                  <InputSprinkles sprinkle={sprinkle.sprinkle} handleSprinkles={this.handleSubmitSprinkles} />
+                )
+              })}
+              <input type="submit" value="submit" />
+            </form>
+           
+
+          
         </main>
         <Footer/>
       </div>

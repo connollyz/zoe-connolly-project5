@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
-const FormFlavor = (props) => {
+const InputFlavor = (props) => {
     return (
-        <form onSubmit={this.props.handleFlavor()}>
+        <React.Fragment>
             <label className="flavor" htmlFor="flavor">{props.flavor}</label>
             <input className="radio" type="radio" id="flavor" name="flavor" required /> 
-            <input type="submit" value="submit" />   
-        </form>
+        </React.Fragment>   
     )
 }
-//exports form component to App.js
-export default FormFlavor; 
+//exports Inputcomponent to App.js
+export default InputFlavor; 
