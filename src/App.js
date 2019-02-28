@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import firebase from './firebase.js';
 import Header from './components/Header.js';
 import Donut from './components/Donut.js';
-import Form from './components/Form.js';
+import FormFlavor from './components/FormFlavor.js';
+import FormIcing from './components/FormIcing.js';
 import Footer from './components/Footer.js';
 import './App.css';
 
@@ -15,6 +16,7 @@ class App extends Component{
       //Have a state with an emty array (option array)
       flavors:[],
       icing:[]
+     
     }
   }
   
@@ -35,37 +37,51 @@ class App extends Component{
      //dountFlavors
      //emty array to store the flavors in
       const flavors = [];
-      console.log("flavors",flavors)
+      // console.log("flavors",flavors)
 
       //get the data.flavors from data 
       for (let flavor in data.flavors) {
         //and store them in a array
         flavors.push({
           flavor: flavor,
-          Hex: flavor[flavor]
+          hex: data.flavors[flavor]
         })
       }
+      console.log(flavors)
 
-      //dountIcing
-      //emty array to store the icing in
-      const icing = [];
-      console.log("icing", icing)
+
+      // //dountIcing
+      // //emty array to store the icing in
+      const icings = [];
+      // console.log("icing", icings)
 
       //get the data.icing from data 
       for (let icing in data.icing) {
         //and store them in a array
-        icing.push({
-          icing: icing,
-          Hex: icing[icing]
+        icings.push({
+          newIcing: icing,
+          hex: data.icing[icing]
         })
       }
+      console.log(icings)
 
-      //set state for both flavors and icing
+
+      //set state for both flavors, icing, and sprinkles
       this.setState({
         flavors: flavors,
-        icing: icing
+        icing: icings
+        
       })
     })
+  }
+
+
+  handleSubmitFlavor = () => {
+
+  }
+
+  handleSubmitIcing = () => {
+
   }
 
   
@@ -77,20 +93,19 @@ class App extends Component{
         <Header/>
         <main>
           <Donut/>
-          <form type="submit">
+          <div>
             {this.state.flavors.map(flavor => {
               return (
-                <Form flavor={flavor.flavor}/>
+                <FormFlavor flavor={flavor.flavor} handleFlavor={this.handleSubmitFlavor} />
               )
             })}
 
             {this.state.icing.map(icing => {
               return (
-                <Form icing={icing.icing} />
+                <FormIcing icing={icing.newIcing} handleIcing={this.handleSubmitIcing}/>
               )
             })}
-            <button>next</button>
-          </form>
+          </div>
         </main>
         <Footer/>
       </div>
