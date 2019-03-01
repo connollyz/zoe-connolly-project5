@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
     
-const FormIcing = (props) => {
+const InputIcing = (props) => {
     return (
        <React.Fragment>
             <label className="icing" htmlFor="icing">{props.icing}</label>
-            <input className="radio" type="radio" id="icing" name="icing" required/>
+            <input className="radio" type="radio" id="icing" name="userInput" value={props.icing} onChange={props.onChange} required/>
         </React.Fragment>
     )
 }
-//exports form component to App.js
-export default FormIcing; 
+
+//exports Input component to App.js
+export default InputIcing; 

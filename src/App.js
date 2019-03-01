@@ -17,8 +17,17 @@ class App extends Component{
       //Have a state with an emty array (option array)
       flavors:[],
       icing:[],
-      sprinkles: []
+      sprinkles: [],
+      step: 1,
+      userFlavor: "",
+      userIcing: "",
+      userSprinkles: "",
+      colours: null
     }
+    this.handleChangeFlavor=this.handleChangeFlavor.bind(this);
+    this.handleChangeIcing = this.handleChangeIcing.bind(this);
+    this.handleChangeSprinkles = this.handleChangeSprinkles.bind(this)
+
   }
   
   //dbRef  to get access to the firebase.
@@ -33,6 +42,9 @@ class App extends Component{
       
       //this is an object that hold all the data from firebase
       const data = responce.val();
+      this.setState({
+        colours: data
+      })
       console.log( "everything", data)
      
      //dountFlavors
@@ -93,19 +105,51 @@ class App extends Component{
   }
 
 
-  //Flavor handle submit
+  //Flavor handle events
   handleSubmitFlavor = (event) => {
     event.preventDefault();
+    this.setState({
+      step:2,
+    })
+    console.log("userflavor",event.nativeEvent) 
   }
 
-   //Icing handle submit
+  handleChangeFlavor(event) {
+    this.setState({
+      userFlavor: event.target.value,
+    })
+    console.log("this works", event.target.value)
+  }
+
+   //Icing handle events
   handleSubmitIcing = (event) => {
     event.preventDefault();
+    this.setState({ 
+      step: 3 ,
+      userIcing: event.target.value,
+    })    
   }
 
-  //Sprinkles handle submit
+  handleChangeIcing(event) {
+    this.setState({
+      userIcing: event.target.value,
+    })
+    console.log("this works", event.target.value)
+  }
+
+  //Sprinkles handle event
   handleSubmitSprinkles= (event) => {
     event.preventDefault();
+    this.setState({
+        userSprinkles: event.target.value,
+      })
+  }
+
+  handleChangeSprinkles(event) {
+    this.setState({
+      userSprinkles: event.target.value,
+    })
+    console.log(event.target.value)
   }
   
   
@@ -117,35 +161,37 @@ class App extends Component{
         <main>
           <Donut/> 
           {/* flavor form */}
-          <form onSubmit={this.handleFlavor}>
+          {this.state.step === 1 && <form className="FlavorForm" onSubmit={this.handleSubmitFlavor}>
             {this.state.flavors.map(flavor => {
               return (
-                <InputFlavor flavor={flavor.flavor} handleFlavor={this.handleSubmitFlavor} />
+                <InputFlavor flavor={flavor.flavor} onChange={this.handleChangeFlavor}/>
               )
             })}
-            <input type="submit" value="submit"/>   
-          </form>
+            <input type="submit" value="next"/>   
+          </form>}
 
           
           {/* icing form */}
-          <form onSubmit={this.handleIcing}>
+          {this.state.step === 2 && <form className="IcingForm" onSubmit={this.handleSubmitIcing}>
             {this.state.icing.map(icing => {
               return (
-                <InputIcing icing={icing.newIcing} handleIcing={this.handleSubmitIcing}/>
+                <InputIcing icing={icing.newIcing} onChange={this.handleChangeIcing}/>
               )
             })} 
-            <input type="submit" value="submit" />
-          </form>  
+            <input type="submit" value="next" />
+          </form>  }
 
             {/* sprinkles form */}
-            <form onSubmit={this.handleSubmitSprinkles}>
-              {this.state.sprinkles.map(sprinkle => {
-                return (
-                  <InputSprinkles sprinkle={sprinkle.sprinkle} handleSprinkles={this.handleSubmitSprinkles} />
-                )
-              })}
-              <input type="submit" value="submit" />
-            </form>
+          {this.state.step === 3 && 
+            <form className="SprinklesForm" onSubmit={this.handleSubmitSprinkles}>
+                {this.state.sprinkles.map(sprinkle => {
+                  return (
+                    <InputSprinkles sprinkle={sprinkle.sprinkle} onChange={this.handleChangeSprinkles}/>
+                  )
+                })}
+                <input type="submit" value="done" />
+              </form>
+          }
            
 
           

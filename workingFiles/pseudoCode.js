@@ -35,3 +35,19 @@
 
 //START OVER BUTTON
 //have a listener on the button (start over) onClick emty option array  and replace with first set
+
+
+
+
+
+
+//Example from mentor for changing colour
+
+// {
+//     this.state.formSubmitted && <Donut flavor={this.state.userFlavor} icing={this.state.userIcing} sprinkles={this.state.userSprinkles} />
+// }
+
+// // donut render function
+// componentDidMount() {
+//     // make your call to your API here  
+// }
