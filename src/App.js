@@ -19,15 +19,14 @@ class App extends Component{
       icing:[],
       sprinkles: [],
       step: 1,
+      colours:null,
       userFlavor: "",
       userIcing: "",
       userSprinkles: "",
-      colours: null
     }
-    this.handleChangeFlavor=this.handleChangeFlavor.bind(this);
+    this.handleChangeFlavor = this.handleChangeFlavor.bind(this);
     this.handleChangeIcing = this.handleChangeIcing.bind(this);
     this.handleChangeSprinkles = this.handleChangeSprinkles.bind(this)
-
   }
   
   //dbRef  to get access to the firebase.
@@ -99,11 +98,16 @@ class App extends Component{
       this.setState({
         flavors: flavors,
         icing: icings,
-        sprinkles: sprinkles    
+        sprinkles: sprinkles, 
+        flavorHex: "#f9c48c",
+        icingHex: "#fffffb",  
+        sprinkelsHex: null 
       })
     })
   }
-
+  
+  
+  
 
   //Flavor handle events
   handleSubmitFlavor = (event) => {
@@ -115,10 +119,20 @@ class App extends Component{
   }
 
   handleChangeFlavor(event) {
+    //get the object that has the colours in it
+    const colours = this.state.colours;
+    //save the value of the users input
+    const currentFlavor = event.target.value;
+    console.log(colours)
+    //get the hex code form the local varible we made using brakit notation becouse curentFlavor is varible
+    const flavorHex = colours.flavors[currentFlavor]
+    console.log(colours.flavors[currentFlavor])
     this.setState({
       userFlavor: event.target.value,
+      flavorHex : flavorHex
     })
-    console.log("this works", event.target.value)
+    console.log("userFlavor", event.target.value)
+
   }
 
    //Icing handle events
@@ -131,8 +145,17 @@ class App extends Component{
   }
 
   handleChangeIcing(event) {
+    //get the object that has the colours in it
+    const colours = this.state.colours;
+    //save the value of the users input
+    const currentIcing = event.target.value;
+    console.log(colours)
+    //get the hex code form the local varible we made using brakit notation becouse curentFlavor is varible
+    const icingHex = colours.icing[currentIcing]
+    console.log(colours.icing[currentIcing])
     this.setState({
       userIcing: event.target.value,
+      icingHex : icingHex
     })
     console.log("this works", event.target.value)
   }
@@ -146,12 +169,20 @@ class App extends Component{
   }
 
   handleChangeSprinkles(event) {
+    //get the object that has the colours in it
+    const colours = this.state.colours;
+    //save the value of the users input
+    const currentIcing = event.target.value;
+    console.log(colours)
+    //get the hex code form the local varible we made using brakit notation becouse curentFlavor is varible
+    const sprinklesHex = colours.icing[currentIcing]
+    console.log(colours.icing[currentIcing])
     this.setState({
-      userSprinkles: event.target.value,
+      userSprinkles: event.target.value[0],
+      sprinklesHex: sprinklesHex
     })
-    console.log(event.target.value)
+   
   }
-  
   
   //this is where things get print to page
   render(){
@@ -159,7 +190,7 @@ class App extends Component{
       <div className="App">
         <Header/>
         <main>
-          <Donut/> 
+          <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex}/> 
           {/* flavor form */}
           {this.state.step === 1 && <form className="FlavorForm" onSubmit={this.handleSubmitFlavor}>
             {this.state.flavors.map(flavor => {
@@ -181,7 +212,7 @@ class App extends Component{
             <input type="submit" value="next" />
           </form>  }
 
-            {/* sprinkles form */}
+          {/* sprinkles form */}
           {this.state.step === 3 && 
             <form className="SprinklesForm" onSubmit={this.handleSubmitSprinkles}>
                 {this.state.sprinkles.map(sprinkle => {
@@ -192,26 +223,11 @@ class App extends Component{
                 <input type="submit" value="done" />
               </form>
           }
-           
-
-          
         </main>
         <Footer/>
       </div>
     );
   }
 }  
-
-
-
-
-// use the contence of option array to be the displayed as radio buttons on the page
-//create a listener for users input and store in a variable 
-//take user input and compare to properties in firebase donut flavours 
-//if exactly equal to firebase property get the value of the property and store in a variable
-// target the SVG and change the colour with the variable equal to the user input (hex code)
-//disable event default
-// have a listener on the button (next) onClick emty option array  and replace with next set of options in the array
-
 
 export default App;
