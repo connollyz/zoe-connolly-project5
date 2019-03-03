@@ -4,7 +4,7 @@ import Header from './components/Header.js';
 import Donut from './components/Donut.js';
 import InputFlavor from './components/InputFlavor.js';
 import InputIcing from './components/InputIcing.js';
-import InputSprinkles from './components/InputSprinkles.js';
+// import InputSprinkles from './components/InputSprinkles.js';
 import Footer from './components/Footer.js';
 import './App.css';
 
@@ -17,16 +17,16 @@ class App extends Component{
       //Have a state with an emty array (option array)
       flavors:[],
       icing:[],
-      sprinkles: [],
+      // sprinkles: [],
       step: 1,
       colours:null,
       userFlavor: "",
       userIcing: "",
-      userSprinkles: "",
+      // userSprinkles: "",
     }
     this.handleChangeFlavor = this.handleChangeFlavor.bind(this);
     this.handleChangeIcing = this.handleChangeIcing.bind(this);
-    this.handleChangeSprinkles = this.handleChangeSprinkles.bind(this)
+    // this.handleChangeSprinkles = this.handleChangeSprinkles.bind(this)
   }
   
   //dbRef  to get access to the firebase.
@@ -78,30 +78,30 @@ class App extends Component{
       console.log("icing",icings)
 
 
-      // dountsprinkles
-      //emty array to store the sprinkles in
-      const sprinkles = [];
-      // console.log("sprinkles",sprinkles)
+      // // dountsprinkles
+      // //emty array to store the sprinkles in
+      // const sprinkles = [];
+      // // console.log("sprinkles",sprinkles)
 
-      //get the data.sprinkles from data 
-      for (let sprinkle in data.sprinkles) {
-        //and store them in a array
-        sprinkles.push({
-          sprinkle: sprinkle,
-          hex: data.sprinkles[sprinkle]
-        })
-      }
-      console.log("sprinkels", sprinkles)
+      // //get the data.sprinkles from data 
+      // for (let sprinkle in data.sprinkles) {
+      //   //and store them in a array
+      //   sprinkles.push({
+      //     sprinkle: sprinkle,
+      //     hex: data.sprinkles[sprinkle]
+      //   })
+      // }
+      // console.log("sprinkels", sprinkles)
 
 
       //set state for both flavors, icing, and sprinkles
       this.setState({
         flavors: flavors,
         icing: icings,
-        sprinkles: sprinkles, 
+        // sprinkles: sprinkles, 
         flavorHex: "#f9c48c",
         icingHex: "#fffffb",  
-        sprinkelsHex: null 
+        // sprinkelsType: null 
       })
     })
   }
@@ -139,7 +139,7 @@ class App extends Component{
   handleSubmitIcing = (event) => {
     event.preventDefault();
     this.setState({ 
-      step: 3 ,
+      step: 1 ,
       userIcing: event.target.value,
     })    
   }
@@ -160,29 +160,31 @@ class App extends Component{
     console.log("this works", event.target.value)
   }
 
-  //Sprinkles handle event
-  handleSubmitSprinkles= (event) => {
-    event.preventDefault();
-    this.setState({
-        userSprinkles: event.target.value,
-      })
-  }
+  // //Sprinkles handle event
+  // handleSubmitSprinkles= (event) => {
+  //   event.preventDefault();
+  //   this.setState({
+  //       step: 1,
+  //       flavorHex: "#f9c48c",
+  //       icingHex: "#fffffb", 
+  //       userSprinkles: event.target.value,
+  //     })
+  // }
 
-  handleChangeSprinkles(event) {
-    //get the object that has the colours in it
-    const colours = this.state.colours;
-    //save the value of the users input
-    const currentIcing = event.target.value;
-    console.log(colours)
-    //get the hex code form the local varible we made using brakit notation becouse curentFlavor is varible
-    const sprinklesHex = colours.icing[currentIcing]
-    console.log(colours.icing[currentIcing])
-    this.setState({
-      userSprinkles: event.target.value[0],
-      sprinklesHex: sprinklesHex
-    })
-   
-  }
+  // handleChangeSprinkles(event) {
+  //   //get the object that has the colours in it
+  //   const colours = this.state.colours;
+  //   //save the value of the users input
+  //   const currentSprinkles = event.target.value;
+  //   console.log(colours)
+  //   //get the hex code form the local varible we made using brakit notation becouse curentFlavor is varible
+  //   const sprinklesType = colours.sprinkles[currentSprinkles]
+  //   console.log(colours.sprinkles[currentSprinkles])
+  //   this.setState({
+  //     userSprinkles: event.target.value[0],
+  //     sprinklesType: sprinklesType, 
+  //   }) 
+  // }
   
   //this is where things get print to page
   render(){
@@ -190,7 +192,9 @@ class App extends Component{
       <div className="App">
         <Header/>
         <main>
-          <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex}/> 
+          <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex} /> 
+          {/* sprinkelsType={this.state.sprinkelsType} */}
+          
           {/* flavor form */}
           {this.state.step === 1 && <form className="FlavorForm" onSubmit={this.handleSubmitFlavor}>
             {this.state.flavors.map(flavor => {
@@ -212,7 +216,7 @@ class App extends Component{
             <input type="submit" value="next" />
           </form>  }
 
-          {/* sprinkles form */}
+          {/* sprinkles form
           {this.state.step === 3 && 
             <form className="SprinklesForm" onSubmit={this.handleSubmitSprinkles}>
                 {this.state.sprinkles.map(sprinkle => {
@@ -222,7 +226,7 @@ class App extends Component{
                 })}
                 <input type="submit" value="done" />
               </form>
-          }
+          } */}
         </main>
         <Footer/>
       </div>
