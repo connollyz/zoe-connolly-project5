@@ -131,6 +131,7 @@ class App extends Component{
           <div className="wrapper">
             <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex} /> 
           </div>
+          <div className="textWrapper">
             {/* flavor form */}
             {this.state.step === 1 && <form className="clearfix" onSubmit={this.handleSubmitFlavor}>
               {this.state.flavors.map(flavor => {
@@ -151,7 +152,7 @@ class App extends Component{
               })} 
               <input type="submit" value="start over"/>
             </form>}
-          
+          </div>
         </main>
         <Footer/>
       </div>

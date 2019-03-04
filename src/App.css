@@ -17,7 +17,7 @@ html{
     font-size: 125%;
 }
 
-.wrapper{
+.wrapper, .textWrapper{
     margin: 0 auto;
     max-width: 1025px;
     min-width: 300px;
@@ -63,14 +63,16 @@ input[type=radio]{
     position: absolute;
 }
 
-
-
 svg{
- max-height: 400px;
+ max-width: 500px;
+ width: 90%;
 }
 
 .donut{
-    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
 }
 
 form{
@@ -118,18 +120,55 @@ label:hover{
 }
 
 
+/* tablet */
+@media(max-width: 768px){
+    .donut{
+        margin-bottom: 15%;
+    }
+}
+
+@media(max-width: 540px){
+    .donut{
+        margin-bottom: 8%;
+    }
+}
+
 /* mobile */
-@media(max-width: 435px){
+@media(max-width: 500px){
+
+    .donut{
+        margin-bottom: 40%;
+    }
+
+    .textWrapper{
+        width: 100%;
+    }
+
     label,input[type="submit"] {
         width: 100%;
         display: block;
         margin:0;    
     }
+
     label{
         border-bottom: 1px solid #A86FBA;
     }
+    
     form{
         padding: 0;
     }
 }
+
+@media(max-width: 414px){
+    .donut{
+        margin-bottom: 20%;
+    }
+}
+
+@media(max-width: 375px){
+    .donut{
+        margin-bottom: 40%;
+    }
+}
+
 
