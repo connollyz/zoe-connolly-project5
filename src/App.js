@@ -126,19 +126,22 @@ class App extends Component{
     })
   }
 
+ 
+
 
   
   //Print to page
   render(){
     return (
       <div className='App'>
-        <Header/>
+        <Header />
         <main>
           <div className='wrapper'>
             <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex} /> 
           </div>
           <div className='textWrapper'>
             {/* flavor form */}
+            {this.state.step === 1 && <p className='step'>chose a donut flavor</p>}
             {this.state.step === 1 && <form className='clearfix' onSubmit={this.handleSubmitFlavor}>
               {this.state.flavors.map(flavor => {
                 return (
@@ -150,6 +153,7 @@ class App extends Component{
 
               
             {/* icing form */}
+            {this.state.step === 2 && <p className='step'>chose a icing flavor</p>}
             {this.state.step === 2 && <form className='clearfix' onSubmit=    {this.handleSubmitIcing}>
                 {this.state.icing.map(icing => {
                   return (

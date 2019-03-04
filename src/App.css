@@ -23,6 +23,9 @@ html{
     min-width: 300px;
     width: 80%;
 }
+.wrapper{
+    position: relative;
+}
 
 .headerDiv{
     padding: 1px;
@@ -30,26 +33,18 @@ html{
 }
 
 .headerDiv .wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     color: #fffffb;
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
 }
 
-
-
-.infoDiv{
-    border: 1px solid red;
-    height: 5px;
+.headerDiv .wrapper p{
+    padding: 5px 12px;
 }
 
-.infoDiv label{
-    background: none;
-    font-size: 0.5rem;
-    width: auto;
-    margin: 0;
-    line-height: 0;
-    padding: 0;
-}
 
 main{
     display: flex;
@@ -66,7 +61,7 @@ main{
 .footerDiv .wrapper{
     color: #fffffb;
     font-size: 0.5rem;
-    font-family: 'Nunito', sans-serif;
+    
     font-weight: 400;
 }
 
@@ -80,7 +75,7 @@ input[type=radio]{
 }
 
 svg{
- max-width: 500px;
+ max-width: 400px;
  width: 90%;
 }
 
@@ -89,6 +84,66 @@ svg{
     flex-direction: row;
     justify-content: center;
     align-self: center;
+}
+
+.toggle{
+    padding: 10px;
+    width: auto;
+    background: none;
+    font-weight: 400;
+    font-size: 1rem;
+    overflow: hidden;
+}
+
+.toggle:hover{
+    font-weight: 900;
+    cursor: pointer;
+    background: none;
+}
+
+.step{
+    background: hotpink;
+    font-weight: 900;
+    padding: 10px 30px;
+    position: absolute;
+    z-index: 1;
+    top: 57px;
+    left: -10px;
+    font-size: .9rem;
+    border-radius: 0 0 5px 5px;
+    margin-left: 10%;
+}
+
+p{
+    color: #fffffb;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    margin: 5px;
+}
+span{
+    font-weight: 900;
+}
+
+input[type=checkbox]{
+    visibility: hidden;
+    position: absolute;
+}
+
+input:checked + .info{
+    display: block;
+}
+
+.info{
+    position: absolute;
+    background: rgba(26,26, 26, 0.8);
+    padding: 10px;
+    z-index: 2;
+    top: 50px;
+    right: 0;
+    border-radius: 0 0 10px 10px;
+    display: none;
+    min-width:300px;
 }
 
 form{
@@ -140,7 +195,7 @@ label:hover{
 /* tablet */
 @media(max-width: 768px){
     .donut{
-        margin-bottom: 15%;
+        margin-bottom: 0%;
     }
 }
 
@@ -152,6 +207,14 @@ label:hover{
 
 /* mobile */
 @media(max-width: 500px){
+    .step{
+        top: 40px;
+        margin-left: 0;
+    }
+
+    .info{
+        top: 40px;
+    }
 
     .donut{
         margin-bottom: 40%;
@@ -185,7 +248,7 @@ label:hover{
 
 @media(max-width: 375px){
     .donut{
-        margin-bottom: 40%;
+        margin-bottom: 20%;
     }
 }
 
