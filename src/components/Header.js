@@ -1,15 +1,14 @@
 import React from 'react';
 
-
 function Header() {
     return (
-        <div className="HeaderDiv">
+        <div className="headerDiv">
             <div className="wrapper">
-                
+                <p>sweet designs</p>
             </div>
         </div>
-    );//return
-} // Header 
+    );
+};
 
 //exports header component to App.js
 export default Header; 

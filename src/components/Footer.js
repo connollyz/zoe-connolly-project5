@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <div className="FooterDiv">
+        <div className="footerDiv">
             <div className="wrapper">
                 <p>&#169; Zoe Connolly 2019</p>
             </div>

@@ -3,8 +3,8 @@ import React from 'react';
 const InputFlavor = (props) => {
     return (
         <React.Fragment>
-            <label className="flavor" htmlFor="flavor">{props.flavor}</label>
-            <input className="radio" type="radio" id="flavor" name="userInput" value={props.flavor} onChange={props.onChange} required /> 
+            <label htmlFor={props.flavor}>{props.flavor}</label>
+            <input type="radio" id={props.flavor} name="flavor" value={props.flavor} onChange={props.onChange} /> 
         </React.Fragment>   
     )
 }

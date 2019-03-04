@@ -101,7 +101,9 @@ class App extends Component{
     event.preventDefault();
     this.setState({ 
       step: 1 ,
-      userIcing: event.target.value,
+      flavorHex: "#f9c48c",
+      icingHex: "#fffffb",  
+      
     })    
   }
 
@@ -126,29 +128,30 @@ class App extends Component{
       <div className="App">
         <Header/>
         <main>
-          <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex} /> 
-   
-          {/* flavor form */}
-          {this.state.step === 1 && <form className="FlavorForm" onSubmit={this.handleSubmitFlavor}>
-            {this.state.flavors.map(flavor => {
-              return (
-                <InputFlavor flavor={flavor.flavor} onChange={this.handleChangeFlavor}/>
-              )
-            })}
-            <input type="submit" value="icing time"/>   
-          </form>}
+          <div className="wrapper">
+            <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex} /> 
+          </div>
+            {/* flavor form */}
+            {this.state.step === 1 && <form className="clearfix" onSubmit={this.handleSubmitFlavor}>
+              {this.state.flavors.map(flavor => {
+                return (
+                  <InputFlavor flavor={flavor.flavor} onChange={this.handleChangeFlavor}/>
+                )
+              })}
+              <input type="submit" value="next"/>   
+            </form>}
 
+            
+            {/* icing form */}
+          {this.state.step === 2 && <form className="clearfix" onSubmit={this.handleSubmitIcing}>
+              {this.state.icing.map(icing => {
+                return (
+                  <InputIcing icing={icing.newIcing} onChange={this.handleChangeIcing}/>
+                )
+              })} 
+              <input type="submit" value="start over"/>
+            </form>}
           
-          {/* icing form */}
-          {this.state.step === 2 && <form className="IcingForm" onSubmit={this.handleSubmitIcing}>
-            {this.state.icing.map(icing => {
-              return (
-                <InputIcing icing={icing.newIcing} onChange={this.handleChangeIcing}/>
-              )
-            })} 
-            <input type="submit" value="start over"/>
-          </form>}
-
         </main>
         <Footer/>
       </div>

@@ -3,8 +3,8 @@ import React from 'react';
 const InputIcing = (props) => {
     return (
        <React.Fragment>
-            <label className="icing" htmlFor="icing">{props.icing}</label>
-            <input className="radio" type="radio" id="icing" name="userInput" value={props.icing} onChange={props.onChange} required/>
+            <label htmlFor={props.icing}>{props.icing}</label>
+            <input type="radio" id={props.icing} name="icing" value={props.icing} onChange={props.onChange}/>
         </React.Fragment>
     )
 }
