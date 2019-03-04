@@ -17,8 +17,8 @@ class App extends Component{
       icing:[],
       step: 1,
       colours: null,
-      userFlavor: "",
-      userIcing: "",
+      userFlavor: '',
+      userIcing: '',
     }
     this.handleChangeFlavor = this.handleChangeFlavor.bind(this);
     this.handleChangeIcing = this.handleChangeIcing.bind(this);
@@ -52,30 +52,32 @@ class App extends Component{
         })
       }
  
-      // //dountIcing
-      // //emty array to store the icing in
+      //dountIcing
+      //emty array to store the icing in
       const icings = [];
       //get the data.icing from data 
       for (let icing in data.icing) {
-        //and store them in a array
+      //and store them in a array
         icings.push({
           newIcing: icing,
           hex: data.icing[icing]
         })
       }
 
-      //set state for both flavors, icing, and sprinkles
+      //set state for both flavors and icing
       this.setState({
         flavors: flavors,
         icing: icings,
-        flavorHex: "#f9c48c",
-        icingHex: "#fffffb",  
+        flavorHex: '#f9c48c',
+        icingHex: '#fffffb',  
       })
     })
   }
   
 
-  //Flavor handle events
+  // Handling Submit events
+
+  //Flavor
   handleSubmitFlavor = (event) => {
     event.preventDefault();
     this.setState({
@@ -83,6 +85,20 @@ class App extends Component{
     })
   }
 
+  //Icing
+  handleSubmitIcing = (event) => {
+    event.preventDefault();
+    this.setState({
+      step: 1,
+      flavorHex: '#f9c48c',
+      icingHex: '#fffffb',
+
+    })
+  }
+  
+   //Handling change colour events
+
+  //Flavor
   handleChangeFlavor(event) {
     //get the object that has the colours in it
     const colours = this.state.colours;
@@ -96,17 +112,7 @@ class App extends Component{
     })
   }
 
-   //Icing handle events
-  handleSubmitIcing = (event) => {
-    event.preventDefault();
-    this.setState({ 
-      step: 1 ,
-      flavorHex: "#f9c48c",
-      icingHex: "#fffffb",  
-      
-    })    
-  }
-
+  //Icing
   handleChangeIcing(event) {
     //get the object that has the colours in it
     const colours = this.state.colours;
@@ -122,35 +128,35 @@ class App extends Component{
 
 
   
-  //this is where things get print to page
+  //Print to page
   render(){
     return (
-      <div className="App">
+      <div className='App'>
         <Header/>
         <main>
-          <div className="wrapper">
+          <div className='wrapper'>
             <Donut flavorHex={this.state.flavorHex} icingHex={this.state.icingHex} /> 
           </div>
-          <div className="textWrapper">
+          <div className='textWrapper'>
             {/* flavor form */}
-            {this.state.step === 1 && <form className="clearfix" onSubmit={this.handleSubmitFlavor}>
+            {this.state.step === 1 && <form className='clearfix' onSubmit={this.handleSubmitFlavor}>
               {this.state.flavors.map(flavor => {
                 return (
                   <InputFlavor flavor={flavor.flavor} onChange={this.handleChangeFlavor}/>
                 )
-              })}
-              <input type="submit" value="next"/>   
+            })}
+              <input type='submit' value='next'/>   
             </form>}
 
-            
+              
             {/* icing form */}
-          {this.state.step === 2 && <form className="clearfix" onSubmit={this.handleSubmitIcing}>
-              {this.state.icing.map(icing => {
-                return (
-                  <InputIcing icing={icing.newIcing} onChange={this.handleChangeIcing}/>
-                )
-              })} 
-              <input type="submit" value="start over"/>
+            {this.state.step === 2 && <form className='clearfix' onSubmit=    {this.handleSubmitIcing}>
+                {this.state.icing.map(icing => {
+                  return (
+                    <InputIcing icing={icing.newIcing} onChange={this.handleChangeIcing}/>
+                  )
+            })} 
+              <input type='submit' value='start over'/>
             </form>}
           </div>
         </main>

@@ -2,9 +2,9 @@ import React from 'react';
 
 function Header() {
     return (
-        <div className="headerDiv">
-            <div className="wrapper">
-                <p>sweet designs</p>
+        <div className='headerDiv'>
+            <div className='wrapper'>
+                <p>sweet designs</p> 
             </div>
         </div>
     );

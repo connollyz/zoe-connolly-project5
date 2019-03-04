@@ -38,9 +38,6 @@
 
 
 
-
-
-
 //Example from mentor for changing colour
 
 // {
@@ -52,28 +49,9 @@
 //     // make your call to your API here  
 // }
 
-// mobile
-/* @media(mix-width: 350px){
-    label{
-        display: block;
-        /* width: 100%; */
-// font - size: 1.5rem;
-// padding: 20px 0px;
-// line - height: 20px;
-// border - bottom: 1px solid #A86FBA;
-//     }
 
 
-// form{
-
-// }
-
-// input[type = submit]{
-//     width: 100 %;
-//     border - radius: 0px;
-//     margin: 0;
-//     padding: 15px 0px;
-
-// }
-
-// } * /
+// to do 
+// add instructions thing at top of page
+// clean code 
+// creat a fav a con
