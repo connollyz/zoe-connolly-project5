@@ -24,6 +24,10 @@ html{
     width: 80%;
 }
 .wrapper{
+    flex: 1 0 auto;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
     position: relative;
 }
 
@@ -66,7 +70,7 @@ main{
 }
 
 input[type=submit]:hover{
-    font-size: 1.5rem;
+    background: #A86FBA;
 }
 
 input[type=radio]{
@@ -136,7 +140,7 @@ input:checked + .info{
 
 .info{
     position: absolute;
-    background: rgba(26,26, 26, 0.8);
+    background: rgba(26,26, 26, 0.9);
     padding: 10px;
     z-index: 2;
     top: 50px;
