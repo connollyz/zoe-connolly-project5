@@ -4,7 +4,7 @@ function Header() {
     return (
         <div className='headerDiv'>
             <div className='wrapper'>
-                {/* <p>sweet designs</p>  */}
+                <p>sweet designs</p> 
                 <label className='toggle' htmlFor='toggle'>?</label>
                 <input id="toggle" type='checkbox'/>
                 <div className='info'>
